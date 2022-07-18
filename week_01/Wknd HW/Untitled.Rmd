@@ -1,0 +1,97 @@
+---
+title: "weekwnd hw"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(readr)
+library(dplyr)
+```
+```{r}
+books <- read_csv("data/books.csv")
+```
+
+```{r}
+books %>%
+authors <- select(books, authors)
+    
+    arrange(desc, average_rating)
+```
+```{r}
+# Q: What are the top 10 books with the highest average rating (with more than
+# 10,000 ratings)?
+
+top_10_books <- books %>%
+  select(title, average_rating, ratings_count) %>% 
+  filter(ratings_count >= 10000) %>% 
+  slice_max(average_rating, n = 10, with_ties = FALSE)
+top_10_books
+```
+
+```{r}
+#Q; Who are the bottom 20 authors with ratings >0?
+bottom_20_authors <- books %>%
+  select(authors, average_rating) %>%
+  filter(average_rating > 0) %>%
+  slice_min(average_rating, n =  20, with_ties = FALSE)
+  bottom_20_authors
+```
+
+```{r}
+#Q: How many of each language
+language <- books %>%
+  group_by(language_code) %>%
+  rename(lang = language_code) %>%
+  arrange(lang)
+ language 
+```
+```{r}
+
+  
+```
+
+```{r}
+#Find the authors with more than 20 books and rank them by their average rating
+books %>%
+  group_by(authors) %>%
+  summarise(author_count = n(),
+         author_average_rating <- mean(average_rating)) %>%
+  filter(author_count > 20) %>%
+  arrange(desc(author_average_rating))
+```
+
+
+```{r}
+#How many languages?
+books %>%
+  distinct(language_code)
+```
+```{r}
+#
+books_data_merged_eng_lang <- books_data %>%
+  group_by(language_code) %>% 
+  mutate(
+    language_code_merge_eng = if_else(language_code == "en-US", "eng", language_code),
+    language_code_merge_eng = if_else(language_code == "en-GB", "eng", language_code), 
+    language_code_merge_eng = if_else(language_code == "en-CA", "eng", language_code), .after = language_code) %>% 
+  summarise(count = n()) %>% 
+arrange(desc(count))
+
+books_data_merged_eng_lang
+```
+
+
+```{r}
+
+books_data_merged_eng_lang <- books %>%
+  select(language_code) %>% 
+  mutate(language_code = recode(language_code, "en-US" = "eng","en-GB" = "eng", "en-CA" = "eng"),
+  group_by(language_code) %>% 
+  summarise(count = n()) %>% 
+  arrange(desc(count)) 
+  )
+```
+
+

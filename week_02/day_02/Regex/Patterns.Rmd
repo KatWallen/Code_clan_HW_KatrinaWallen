@@ -1,0 +1,68 @@
+---
+title: "Regex"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+```{r}
+single_string <- "string a"
+strings <- c("string a", "string b", "string c", "string d", "striiiiiiing e")
+```
+
+```{r}
+pattern <- "a"
+```
+
+```{r}
+single_string %>%
+  str_detect(pattern, negate = TRUE)
+```
+
+```{r}
+pattern <- "str"
+
+strings %>%
+  str_detect(pattern)
+```
+```{r}
+pattern <- "[abc]"
+
+strings %>%
+  str_detect(pattern)
+```
+
+```{r}
+pattern <- "[a-c]"
+
+strings %>%
+  str_detect(pattern)
+```
+```{r}
+pattern <- "[a-z]"
+
+strings %>%
+  str_detect(pattern)
+```
+```{r}
+pattern <- "(?i)[A-Z]" #This makes it not interested in the case (upper/lower)
+
+strings %>%
+  str_detect(pattern)
+```
+
+```{r}
+pattern <- "i{3}"
+
+strings %>%
+  str_detect(pattern)
+```
+```{r}
+pattern <- "i{2,6}"
+
+strings %>%
+  str_detect(pattern)
+```
+```
+

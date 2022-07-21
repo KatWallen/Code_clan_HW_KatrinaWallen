@@ -42,7 +42,37 @@ library(tidyr)
 pivot_longer(cols = c("Y1999", "Y2000", "Y2001"), names_to = "year", values_to = "year") 
 pivot_wider(id_cols = c("population", "cases")) names_from = "type", values_from = "year")
 ```
+--------------------------Corrections-------------------------------------
+Do the appropriate pivoting of your columns using R
+ 
+```{r}
+library(tidyverse)
 
+# pivot longer expects:
+pivot_longer(data =, cols =, names_to = , values_to = )
+
+# so the data is the first argument
+pivot_longer(country_data, cols = c("Y1999", "Y2000", "Y2001"), names_to = "year", values_to = "value")
+```
+
+# alternatively we can pipe the data in. When piping: the left hand side of the pipe, in this case country_data gets placed into the first argument (data) of the function on the right hand side of the pipe. Because the tidyverse functions often have the data as the first argument, piping is very natural. We can then pipe again into the pivot wider function. This time our data will be the result of our pivot longer...
+
+country_data %>% 
+  pivot_longer(cols = c("Y1999", "Y2000", "Y2001"), names_to = "year", values_to = "value") %>% 
+  pivot_wider(names_from = "type", values_from = "value")
+
+# This is equivalent to
+
+pivot_wider(
+  data = pivot_longer(
+    data = country_data,
+    cols = c("Y1999", "Y2000", "Y2001"),
+    names_to = "year",
+    values_to = "value"
+    ),
+  names_from = "type",
+  values_from = "value"
+)
 
 
 **Task 3.**\
@@ -50,6 +80,17 @@ Separate the `country` variable so you have the name in one column and the numbe
 ```{r}
 separate("country", c("number", "name"), sep = ".")
 ```
+-------------------------------------------------------------------------------
+Task 3
+Separate the country variable so you have the name in one column and the number in another.
+{r}
+# again, the data is the first argument:
+separate(data = country_data, "country", c("number", "name"), sep = "\\.")
+
+# equivalent to
+country_data %>% 
+  separate("country", c("number", "name"), sep = "\\.")
+
 
 
 **Task 4.**\
@@ -58,3 +99,16 @@ Unite the `code_letter` and `code_numb` variables so that they are both in one c
 unite(code, col = c("code_letter", "code_numb"), sep = 
 ```
 
+-------------------------------
+```{r}
+# again, the data is the first argument
+unite(data = country_data, col = "code", c("code_letter", "code_numb"), sep = '')
+
+```
+
+
+
+# equivalent to
+
+country_data %>% 
+  unite(col = "code", c("code_letter", "code_numb"), sep = '')

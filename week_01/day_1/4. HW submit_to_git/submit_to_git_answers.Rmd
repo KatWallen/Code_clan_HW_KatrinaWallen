@@ -1,0 +1,59 @@
+---
+title: "Homework -- Submit to Git - Answers"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    df_print: paged
+    css: ../../../styles.css
+  pdf_document: default
+---
+
+## MVP 
+
+1) Open Github Desktop
+
+2) Create a new repository
+
+  * `File > New Repository`
+  * Name it `codeclan_homework_yourname` and select a file path outside any other repos
+
+3) Create a `week_01` folder in your repo, then a `day_1` folder inside that.
+
+4) Create a couple of `.txt` files in the folder
+
+  * Click "Open in Atom"
+  * In Atom create some `.txt` files
+
+5) Edit then save the files in atom
+
+6) Commit the files
+
+  * Type a summary
+  * Type a detailed commit message
+  * Press "commit to main"
+
+7) Make a change to each file in Atom
+
+8) Commit the changes
+
+9) Publish your repository
+
+  * Click "publish repository"
+  * Name it `codeclan_homework_yourname`
+  * Make sure the "keep this code private" box is **NOT** checked
+
+
+
+## Extension
+
+1) Create a `.gitignore` file in Atom
+
+2) Add the names of any files you want to ignore, eg. `file_to_ignore.txt`
+
+3) Commit and push `.gitignore`
+
+4) Create `file_to_ignore.txt` and add some text to it
+
+5) Go back to Github Desktop to ensure the changes aren't being picked up by Git

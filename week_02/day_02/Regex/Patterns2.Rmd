@@ -1,0 +1,74 @@
+---
+title: "Patterns2"
+output: html_notebook
+---
+
+Make a vector containing the strings:
+"Colin's mobile number definitely isn't 07777777777."
+"A landline might be 01010 123456."
+"Mhairi, Del, Aileen and Steph helped write these notes"
+"I'm called your_name_here and I live in your_town_here."
+
+Use regular expressions to:
+Extract all the names
+Extract the landline number
+Insert your name and where you live into the fourth string
+```{r}
+library(tidyverse)
+```
+```{r}
+stringg <- c("Colin's mobile number definitely isn't 07777777777.",
+"A landline might be 01010 123456.", "Mhairi, Del, Aileen and Steph helped write these notes",
+"I'm called your_name_here and I live in your_town_here.")
+pattern1 <- "[A-Z]{1}[a-z]+"
+
+stringg %>%
+  str_extract_all(pattern1)
+```
+
+```{r}
+pattern2 <-"[0-9]+\\s[0-9]+"
+
+stringg %>%
+str_extract(pattern2)
+```
+
+```{r}
+pattern3 <- "[a-z_name_here]"
+  
+stringg %>%
+  gsub(pattern3, "Kat")
+```
+
+```{r}
+test_strings <- c(
+  "abc", 
+  "Abc",
+  "abC",
+  "s"
+)
+pattern <- "[a-z]"
+pattern2 <- "[a-zA-z]*[a-z]$"
+
+test_strings %>%
+  str_extract_all(pattern2)
+```
+
+```{r}
+student <- c("Abigail", "Bjorn", "Caitlin")
+age <- c(25, 56, 40)
+emails <- c("abigal12@company.co.uk", "bsmith@gmail.co.uk", "caitlin_1980")
+
+student_info <- tibble(student, age, emails)
+
+student_info 
+```
+```{r}
+student_info %>%
+  str_detect(emails, "[a-z0-9+@")
+```
+```{r}
+student_info %>%
+  mutate(emails, "@[a-z.]")
+```
+

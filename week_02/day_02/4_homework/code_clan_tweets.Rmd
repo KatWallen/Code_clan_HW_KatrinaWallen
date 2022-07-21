@@ -1,0 +1,64 @@
+---
+title: "HW - Tidyverse consolidation"
+output: html_notebook
+---
+
+*Question 1*
+Load the code_clan_tweets.csv data. Find the number of rows, columns, and list all the variable names.
+
+```{r}
+library(tidyverse)
+
+rtweets <- read_csv("data/code_clan_tweets.csv")
+
+rtweets
+```
+a) Number of rows = 234
+b) Number of columns = 27
+c) Variable names:
+```{r}
+rtweets %>%
+  ls()
+```
+
+*Question 2*
+Find the total number of favourites (stored in favorite_count) that CodeClan tweets have got. Don’t add a tweet’s favorite_count to the total when the tweet was quoted (see the is_quote variable).
+```{r}
+rtweets %>%
+  count(favorite_count)
+  as.numeric
+```
+```{r}
+275+50+22+30+23+34
+```
+
+```{r}
+  
+rtweets$is_quote [rtweets$is_quote == "TRUE"] <- 1
+rtweets$is_quote [rtweets$is_quote == "FALSE"] <- 0
+rtweets$is_quote <- as.integer(rtweets$is_quote)
+
+rtweets
+```
+```{r}
+rtweets%>%
+
+# Can't work out how to extract and line up columns "is_favorite" (11)n  & is_quote (13), then multiply values, but this is what I've been trying to do
+  
+rtweets = subset(cols_only(), select = -c(favorite_count, is_quote))
+rtweets = subset(rtweets, select = -c(k, m))
+```
+
+```{r}
+rtweets%>%
+  select(favorite_count)
+  dplyr::filter(is_quote = TRUE)
+  
+```
+
+
+*Question 3*
+Summarise the mean number of retweets (retweet_count), split by the type of platform that was used to tweet (source). Again, omit quoted tweets from the mean.
+
+
+

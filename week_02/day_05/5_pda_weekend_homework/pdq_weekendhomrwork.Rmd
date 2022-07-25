@@ -1,0 +1,25 @@
+---
+title: "Meteorites wkend H/W (PDA"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(dyplr)
+
+comets <- read_csv("data/meteorite_landings.csv")
+
+comets
+```
+
+```{r}
+spec(comets)
+```
+```{r}
+comets %>%
+  rename(mass_grams = 'mass (g)', observed_fall_or_found = fall, geo_location = GeoLocation) 
+  
+```
+
+
+

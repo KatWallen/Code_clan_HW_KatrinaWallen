@@ -62,7 +62,7 @@ LEFT JOIN pay_details pd ON employees e
 
 CREATE TABLE public.employees (
 	id int4 PRIMARY.key
-	first_name varchar(50) 
+	first_name varchar(50)
 	last_name varchar(50) 
 	email varchar(50) 
 	department varchar(50) 
@@ -77,6 +77,8 @@ CREATE TABLE public.employees (
 	pay_details local_account_number varchar, local_sort_code varchar,
 	LEFT JOIN pay_details pd ON employees e 
 );
+
+--SOLUTION
 
 --- got stuck on this Q and the other table ones -- 
 - I really intended to finish but this much took 3 hours after tha lab

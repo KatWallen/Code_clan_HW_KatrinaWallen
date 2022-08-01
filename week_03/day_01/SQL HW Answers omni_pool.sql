@@ -55,3 +55,35 @@ FROM pay_details
 WHERE local_account_no ISNULL AND iban ISNULL
 
 -- End - this was all I had time to do.
+
+
+
+
+2022-07-26
+--Q17
+select 
+first_name,
+last_name,
+department,
+start_date,
+concat(first_name, ' ', last_name)
+FROM employees;
+WHERE start_date IS NOT null
+
+
+--Scratchpad
+SELECT EXTRACT month FROM NOW())
+to CHAR NOW, ('MON')
+
+------
+/* Q18 */
+
+select first_name,
+		last_name,
+case 
+	when salary <40000 then 'low'
+	when salary >=40000 then 'high'
+	-- else 'unknown'
+	when salary 
+
+
